@@ -7,7 +7,7 @@ import org.example.Spots.SingleSpot;
 import java.util.ArrayList;
 
 public class ParkingLot {
-    ArrayList<SingleSpot> singleSpots;
+    private ArrayList<SingleSpot> singleSpots;
     private ArrayList<RegularSpot> regularSpots;
     private ArrayList<LargeSpot> largeSpots;
 
@@ -26,12 +26,41 @@ public class ParkingLot {
         }
     }
 
+    public int freeSpots() {
+        return freeSpots(singleSpots.size(), regularSpots.size(), largeSpots.size());
+    }
+
+    public int getTotalSpots() {
+        return singleSpots.size() + regularSpots.size() + largeSpots.size();
+    }
+
+    private int freeSpots(int single, int regular, int large) {
+        int spots = 0;
+        for (int i = 0; i < single; i++) {
+            if (!singleSpots.get(i).getIsFull()) {
+                spots++;
+            }
+        }
+        for (int i = 0; i < regular; i++) {
+            if (!regularSpots.get(i).getIsFull()) {
+                spots++;
+            }
+        }
+        for (int i = 0; i < large; i++) {
+            if (!largeSpots.get(i).getIsFull()) {
+                spots++;
+            }
+        }
+        return spots;
+    }
+
     @Override
     public String toString() {
         return "ParkingLot{" +
-                "singleSpots=" + singleSpots +
-                ", regularSpots=" + regularSpots +
-                ", largeSpots=" + largeSpots +
+                "singleSpots=" + singleSpots.size() +
+                ", regularSpots=" + regularSpots.size() +
+                ", largeSpots=" + largeSpots.size() +
+                ", freeSpots=" + freeSpots() +
                 '}';
     }
 }
