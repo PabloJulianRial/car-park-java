@@ -1,0 +1,5 @@
+package org.example;
+
+public enum VanModel {
+    FORD_TRANSIT, MERCEDES_SPRINTER, OPEL_VIVARO, CITROEN_BERLINGO, RENAULT_TRAFIC
+}

@@ -6,6 +6,7 @@ public abstract class Spot {
 
     public Spot() {
         this.isFull = false;
+        this.parkedVehicle = null;
     }
 
     public boolean getIsFull() {

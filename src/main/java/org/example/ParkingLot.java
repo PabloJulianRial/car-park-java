@@ -7,9 +7,9 @@ import org.example.Spots.SingleSpot;
 import java.util.ArrayList;
 
 public class ParkingLot {
-    private ArrayList<SingleSpot> singleSpots;
-    private ArrayList<RegularSpot> regularSpots;
-    private ArrayList<LargeSpot> largeSpots;
+    private final ArrayList<SingleSpot> singleSpots;
+    private final ArrayList<RegularSpot> regularSpots;
+    private final ArrayList<LargeSpot> largeSpots;
 
     public ParkingLot(int large, int single, int regular) {
         singleSpots = new ArrayList<>();
@@ -52,6 +52,26 @@ public class ParkingLot {
             }
         }
         return spots;
+    }
+
+    public boolean isFull() {
+        return freeSpots() == 0;
+    }
+
+    public boolean isEmpty() {
+        return freeSpots() == getTotalSpots();
+    }
+
+    public boolean areSingleSpotsFull() {
+        return freeSpots(singleSpots.size(), 0, 0) == 0;
+    }
+
+    public boolean areRegularSpotsFull() {
+        return freeSpots(0, regularSpots.size(), 0) == 0;
+    }
+
+    public boolean areLargeSpotsFull() {
+        return freeSpots(0, 0, largeSpots.size()) == 0;
     }
 
     @Override
