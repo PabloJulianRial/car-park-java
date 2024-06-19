@@ -1,9 +1,9 @@
 package org.example;
 
 public abstract class Vehicle {
-    private int size;
+
     private boolean isParked;
-   
+
 
     public Vehicle() {
         this.isParked = false;

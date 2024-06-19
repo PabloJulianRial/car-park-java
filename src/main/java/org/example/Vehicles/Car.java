@@ -11,13 +11,14 @@ public class Car extends Vehicle {
         this.model = model;
     }
 
+
     @Override
     public int getSize() {
-        return 1;
+        return 2;
     }
 
     @Override
     public String toString() {
-        return "Car{" + "model=" + model + '}';
+        return "\uD83D\uDE97";
     }
 }

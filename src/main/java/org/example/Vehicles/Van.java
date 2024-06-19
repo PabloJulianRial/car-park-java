@@ -18,6 +18,6 @@ public class Van extends Vehicle {
 
     @Override
     public String toString() {
-        return "Van{" + "model=" + model + '}';
+        return "\uD83D\uDE90";
     }
 }

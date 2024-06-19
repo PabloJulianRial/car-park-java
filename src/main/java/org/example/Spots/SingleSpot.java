@@ -4,6 +4,9 @@ import org.example.Spot;
 import org.example.Vehicle;
 
 public class SingleSpot extends Spot {
+
+    private int size = 1;
+
     @Override
     public boolean canParkVehicle(Vehicle vehicle) {
         return true;
@@ -11,6 +14,12 @@ public class SingleSpot extends Spot {
 
     @Override
     public int getSize() {
-        return 1;
+        return this.size;
+    }
+
+    @Override
+    public int setSize() {
+        this.size -= 1;
+        return 0;
     }
 }

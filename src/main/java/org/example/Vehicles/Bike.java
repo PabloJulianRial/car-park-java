@@ -17,6 +17,6 @@ public class Bike extends Vehicle {
 
     @Override
     public String toString() {
-        return "Bike{" + "model=" + model + '}';
+        return "\uD83C\uDFCD\uFE0F";
     }
 }

@@ -26,6 +26,18 @@ public class ParkingLot {
         }
     }
 
+    public ArrayList<SingleSpot> getSingleSpots() {
+        return singleSpots;
+    }
+
+    public ArrayList<RegularSpot> getRegularSpots() {
+        return regularSpots;
+    }
+
+    public ArrayList<LargeSpot> getLargeSpots() {
+        return largeSpots;
+    }
+
     public int freeSpots() {
         return freeSpots(singleSpots.size(), regularSpots.size(), largeSpots.size());
     }

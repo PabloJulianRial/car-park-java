@@ -13,6 +13,9 @@ public abstract class Spot {
         return isFull;
     }
 
+    public Vehicle getParkedVehicle() {
+        return parkedVehicle;
+    }
 
     public void parkVehicle(Vehicle vehicle) {
         this.parkedVehicle = vehicle;
@@ -28,5 +31,5 @@ public abstract class Spot {
 
     public abstract int getSize();
 
-
+    public abstract int setSize();
 }
