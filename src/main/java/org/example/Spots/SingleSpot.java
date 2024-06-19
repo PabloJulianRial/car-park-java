@@ -2,14 +2,14 @@ package org.example.Spots;
 
 import org.example.Spot;
 import org.example.Vehicle;
+import org.example.Vehicles.Bike;
 
 public class SingleSpot extends Spot {
-
     private int size = 1;
 
     @Override
     public boolean canParkVehicle(Vehicle vehicle) {
-        return true;
+        return vehicle instanceof Bike;
     }
 
     @Override
@@ -18,8 +18,20 @@ public class SingleSpot extends Spot {
     }
 
     @Override
-    public int setSize() {
+    public void reduceSize() {
         this.size -= 1;
-        return 0;
+        if (this.size == 0) {
+            setIsFull();
+        }
+    }
+
+    @Override
+    public void parkVehicle(Vehicle vehicle) {
+        if (vehicle instanceof Bike && this.size > 0) {
+            this.parkedVehicles.add(vehicle);
+            reduceSize();
+        } else {
+            System.out.println("Can't fit that vehicle here");
+        }
     }
 }

@@ -9,7 +9,6 @@ import java.util.Scanner;
 
 public class Main {
     public static void main(String[] args) {
-
         String[] vehicleArray = {"bike", "car", "van"};
         Scanner scanner = new Scanner(System.in);
         System.out.print("Enter the number of large spots: ");
@@ -41,10 +40,10 @@ public class Main {
         while (!lot.isFull()) {
             System.out.println("\uD83C\uDD7F\uFE0F\uD83C\uDD7F\uFE0F\uD83C\uDD7F\uFE0F\uD83C\uDD7F\uFE0F\uD83C\uDD7F\uFE0F PARKING LOT \uD83C\uDD7F\uFE0F\uD83C\uDD7F\uFE0F\uD83C\uDD7F\uFE0F\uD83C\uDD7F\uFE0F\uD83C\uDD7F\uFE0F");
             System.out.print("Single  spots: " + lot.getFreeSingleSpots().size() + " ");
-            for (Spot spot : lot.getSingleSpots()) {
-                Vehicle parkedVehicle = spot.getParkedVehicle();
-                if (parkedVehicle != null) {
-                    System.out.print("|" + parkedVehicle + "|");
+            for (Spot spot : lot.getFreeSingleSpots()) {
+                if (!spot.getParkedVehicles().isEmpty()) {
+                    System.out.print("|" + spot.getParkedVehicles().get(0) + "|");
+                    spot.setIsFull();
                 } else {
                     System.out.print("|_|");
                 }
@@ -55,35 +54,44 @@ public class Main {
             System.out.println();
 
             System.out.print("Regular spots: " + lot.getFreeRegularSpots().size() + " ");
-            for (Spot spot : lot.getRegularSpots()) {
-                if (spot.getIsFull()) {
-                    Vehicle parkedVehicle = spot.getParkedVehicle();
-                    if (parkedVehicle != null) {
-                        System.out.print("|" + parkedVehicle + "|");
-                    } else {
-                        System.out.print("|__|");
-                    }
-                } else {
+            for (Spot spot : lot.getFreeRegularSpots()) {
+                List<Vehicle> parkedVehicles = spot.getParkedVehicles();
+                if (parkedVehicles.isEmpty()) {
                     System.out.print("|__|");
+                } else if (parkedVehicles.size() == 1) {
+                    System.out.print("|" + parkedVehicles.get(0) + "_|");
+
+                } else {
+                    System.out.print("|" + parkedVehicles.get(0) + "|" + parkedVehicles.get(1) + "|");
+                    spot.setIsFull();
                 }
             }
             if (lot.getFreeRegularSpots().isEmpty()) {
                 System.out.print(Color.ANSI_RED + "  ALL REGULAR SPOTS ARE OCCUPIED" + Color.ANSI_RESET);
             }
             System.out.println();
+
             System.out.print("Large   spots: " + lot.getFreeLargeSpots().size() + " ");
-            for (Spot spot : lot.getLargeSpots()) {
-                Vehicle parkedVehicle = spot.getParkedVehicle();
-                if (parkedVehicle != null) {
-                    System.out.print("|" + parkedVehicle + "|");
-                } else {
+            for (Spot spot : lot.getFreeLargeSpots()) {
+                List<Vehicle> parkedVehicles = spot.getParkedVehicles();
+                if (parkedVehicles.isEmpty()) {
                     System.out.print("|___|");
+                } else if (parkedVehicles.size() == 1) {
+                    System.out.print("|" + parkedVehicles.get(0) + "__|");
+
+                } else if (parkedVehicles.size() == 2) {
+                    System.out.print("|" + parkedVehicles.get(0) + "|" + parkedVehicles.get(1) + "_|");
+
+                } else {
+                    System.out.print("|" + parkedVehicles.get(0) + "|" + parkedVehicles.get(1) + "|" + parkedVehicles.get(2) + "|");
+                    spot.setIsFull();
                 }
             }
             if (lot.getFreeLargeSpots().isEmpty()) {
                 System.out.println(Color.ANSI_RED + "  ALL LARGE SPOTS ARE OCCUPIED" + Color.ANSI_RESET);
             }
             System.out.println();
+
             System.out.println("\uD83C\uDFCD\uFE0F".repeat(bikes.size()));
             System.out.println("\uD83D\uDE97".repeat(cars.size()));
             System.out.println("\uD83D\uDE90".repeat(vans.size()));
@@ -98,6 +106,7 @@ public class Main {
             int spotToPark = scanner.nextInt();
             List<? extends Spot> spots = spotLists[spotToPark - 1];
             List<? extends Vehicle> vehicles = vehicleLists[vehicleToPark - 1];
+
             for (Spot spot : spots) {
                 if (!spot.getIsFull() && spot.canParkVehicle(vehicles.get(0)) && vehicles.get(0).getSize() <= spot.getSize()) {
                     spot.parkVehicle(vehicles.get(0));

@@ -28,14 +28,12 @@ public class ParkingLot {
 
     public ArrayList<SingleSpot> getFreeSingleSpots() {
         ArrayList<SingleSpot> freeSpots = new ArrayList<>();
-        for (Spot spot : this.singleSpots) {
+        for (SingleSpot spot : this.singleSpots) {
             if (!spot.getIsFull()) {
-                freeSpots.add((SingleSpot) spot);
-
+                freeSpots.add(spot);
             }
         }
         return freeSpots;
-
     }
 
     public ArrayList<SingleSpot> getSingleSpots() {
@@ -45,10 +43,9 @@ public class ParkingLot {
 
     public ArrayList<RegularSpot> getFreeRegularSpots() {
         ArrayList<RegularSpot> freeSpots = new ArrayList<>();
-        for (Spot spot : this.regularSpots) {
+        for (RegularSpot spot : this.regularSpots) {
             if (!spot.getIsFull()) {
-                freeSpots.add((RegularSpot) spot);
-
+                freeSpots.add(spot);
             }
         }
         return freeSpots;
@@ -62,9 +59,9 @@ public class ParkingLot {
 
     public ArrayList<LargeSpot> getFreeLargeSpots() {
         ArrayList<LargeSpot> freeSpots = new ArrayList<>();
-        for (Spot spot : this.largeSpots) {
+        for (LargeSpot spot : this.largeSpots) {
             if (!spot.getIsFull()) {
-                freeSpots.add((LargeSpot) spot);
+                freeSpots.add(spot);
 
             }
         }

@@ -1,35 +1,34 @@
 package org.example;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public abstract class Spot {
+    protected List<Vehicle> parkedVehicles;
     private boolean isFull;
-    private Vehicle parkedVehicle;
 
     public Spot() {
         this.isFull = false;
-        this.parkedVehicle = null;
+        this.parkedVehicles = new ArrayList<>();  // Initialize parkedVehicles
     }
 
     public boolean getIsFull() {
         return isFull;
     }
 
-    public Vehicle getParkedVehicle() {
-        return parkedVehicle;
-    }
-
-    public void parkVehicle(Vehicle vehicle) {
-        this.parkedVehicle = vehicle;
+    public void setIsFull() {
         this.isFull = true;
     }
 
-    public void removeVehicle() {
-        this.parkedVehicle = null;
-        this.isFull = false;
+    public List<Vehicle> getParkedVehicles() {
+        return parkedVehicles;
     }
+
+    public abstract void parkVehicle(Vehicle vehicle);
 
     public abstract boolean canParkVehicle(Vehicle vehicle);
 
     public abstract int getSize();
 
-    public abstract int setSize();
+    public abstract void reduceSize();
 }
