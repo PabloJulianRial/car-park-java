@@ -40,10 +40,9 @@ public class Main {
         while (!lot.isFull()) {
             System.out.println("\uD83C\uDD7F\uFE0F\uD83C\uDD7F\uFE0F\uD83C\uDD7F\uFE0F\uD83C\uDD7F\uFE0F\uD83C\uDD7F\uFE0F PARKING LOT \uD83C\uDD7F\uFE0F\uD83C\uDD7F\uFE0F\uD83C\uDD7F\uFE0F\uD83C\uDD7F\uFE0F\uD83C\uDD7F\uFE0F");
             System.out.print("Single  spots: " + lot.getFreeSingleSpots().size() + " ");
-            for (Spot spot : lot.getFreeSingleSpots()) {
+            for (Spot spot : lot.getSingleSpots()) {
                 if (!spot.getParkedVehicles().isEmpty()) {
                     System.out.print("|" + spot.getParkedVehicles().get(0) + "|");
-                    spot.setIsFull();
                 } else {
                     System.out.print("|_|");
                 }
@@ -54,16 +53,14 @@ public class Main {
             System.out.println();
 
             System.out.print("Regular spots: " + lot.getFreeRegularSpots().size() + " ");
-            for (Spot spot : lot.getFreeRegularSpots()) {
+            for (Spot spot : lot.getRegularSpots()) {
                 List<Vehicle> parkedVehicles = spot.getParkedVehicles();
                 if (parkedVehicles.isEmpty()) {
                     System.out.print("|__|");
                 } else if (parkedVehicles.size() == 1) {
                     System.out.print("|" + parkedVehicles.get(0) + "_|");
-
                 } else {
                     System.out.print("|" + parkedVehicles.get(0) + "|" + parkedVehicles.get(1) + "|");
-                    spot.setIsFull();
                 }
             }
             if (lot.getFreeRegularSpots().isEmpty()) {
@@ -72,19 +69,16 @@ public class Main {
             System.out.println();
 
             System.out.print("Large   spots: " + lot.getFreeLargeSpots().size() + " ");
-            for (Spot spot : lot.getFreeLargeSpots()) {
+            for (Spot spot : lot.getLargeSpots()) {
                 List<Vehicle> parkedVehicles = spot.getParkedVehicles();
                 if (parkedVehicles.isEmpty()) {
                     System.out.print("|___|");
                 } else if (parkedVehicles.size() == 1) {
                     System.out.print("|" + parkedVehicles.get(0) + "__|");
-
                 } else if (parkedVehicles.size() == 2) {
                     System.out.print("|" + parkedVehicles.get(0) + "|" + parkedVehicles.get(1) + "_|");
-
                 } else {
                     System.out.print("|" + parkedVehicles.get(0) + "|" + parkedVehicles.get(1) + "|" + parkedVehicles.get(2) + "|");
-                    spot.setIsFull();
                 }
             }
             if (lot.getFreeLargeSpots().isEmpty()) {
