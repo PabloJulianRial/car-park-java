@@ -52,15 +52,18 @@ public class Main {
         while (!lot.isFull()) {
             System.out.println("***** PARKING LOT *****");
 
-            // Print single spots
-            System.out.println("Single spots");
+            System.out.print("Single spots: " + lot.getFreeSingleSpots().size() + "    ");
+
+            if (lot.getFreeSingleSpots().isEmpty()) {
+                System.out.print("ALL SINGLE SPOTS ARE OCCUPIED");
+            }
             for (Spot spot : lot.getSingleSpots()) {
                 if (spot.getIsFull()) {
                     Vehicle parkedVehicle = spot.getParkedVehicle();
                     if (parkedVehicle != null) {
                         System.out.print("|" + parkedVehicle.toString() + "|");
                     } else {
-                        System.out.print("|_|"); // Fallback if somehow vehicle is null
+                        System.out.print("|_|");
                     }
                 } else {
                     System.out.print("|_|");
@@ -68,15 +71,18 @@ public class Main {
             }
             System.out.println();
 
-            // Print regular spots
-            System.out.println("Regular spots");
+            System.out.print("Regular spots: " + lot.getRegularSpots().size());
+            if (lot.getRegularSpots().isEmpty()) {
+                System.out.println("ALL REGULAR SPOTS ARE OCCUPIED");
+            }
+
             for (Spot spot : lot.getRegularSpots()) {
                 if (spot.getIsFull()) {
                     Vehicle parkedVehicle = spot.getParkedVehicle();
                     if (parkedVehicle != null) {
                         System.out.print("|" + parkedVehicle.toString() + "|");
                     } else {
-                        System.out.print("|__|"); // Fallback if somehow vehicle is null
+                        System.out.print("|__|");
                     }
                 } else {
                     System.out.print("|__|");
@@ -84,15 +90,18 @@ public class Main {
             }
             System.out.println();
 
-            // Print large spots
-            System.out.println("Large spots");
+
+            System.out.print("Large spots: ");
+            if (lot.getLargeSpots().isEmpty()) {
+                System.out.println("ALL LARGE SPOTS ARE OCCUPIED");
+            }
             for (Spot spot : lot.getLargeSpots()) {
                 if (spot.getIsFull()) {
                     Vehicle parkedVehicle = spot.getParkedVehicle();
                     if (parkedVehicle != null) {
                         System.out.print("|" + parkedVehicle.toString() + "|");
                     } else {
-                        System.out.print("|___|"); // Fallback if somehow vehicle is null
+                        System.out.print("|___|");
                     }
                 } else {
                     System.out.print("|___|");
@@ -117,13 +126,15 @@ public class Main {
             List<? extends Spot> spots = spotLists[spotToPark - 1];
             List<? extends Vehicle> vehicles = vehicleLists[vehicleToPark - 1];
 
-            // Find the appropriate spot and park the vehicle
             for (Spot spot : spots) {
                 if (!spot.getIsFull() && spot.canParkVehicle(vehicles.get(0)) && vehicles.get(0).getSize() <= spot.getSize()) {
                     spot.parkVehicle(vehicles.get(0));
                     vehicles.remove(0);
-                    break; // Exit the loop after parking one vehicle
+                    break;
                 }
+            }
+            if (lot.isFull()) {
+                System.out.println("Parking lot is full, find another parking lot!!!");
             }
         }
     }

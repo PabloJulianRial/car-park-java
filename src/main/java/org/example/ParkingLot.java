@@ -26,13 +26,52 @@ public class ParkingLot {
         }
     }
 
+    public ArrayList<SingleSpot> getFreeSingleSpots() {
+        ArrayList<SingleSpot> freeSpots = new ArrayList<>();
+        for (Spot spot : this.singleSpots) {
+            if (!spot.getIsFull()) {
+                freeSpots.add((SingleSpot) spot);
+
+            }
+        }
+        return freeSpots;
+
+    }
+
     public ArrayList<SingleSpot> getSingleSpots() {
         return singleSpots;
     }
 
+
+    public ArrayList<RegularSpot> getFreeRegularSpots() {
+        ArrayList<RegularSpot> freeSpots = new ArrayList<>();
+        for (Spot spot : this.regularSpots) {
+            if (!spot.getIsFull()) {
+                freeSpots.add((RegularSpot) spot);
+
+            }
+        }
+        return freeSpots;
+
+    }
+
+
     public ArrayList<RegularSpot> getRegularSpots() {
         return regularSpots;
     }
+
+    public ArrayList<LargeSpot> getFreeLargeSpots() {
+        ArrayList<LargeSpot> freeSpots = new ArrayList<>();
+        for (Spot spot : this.largeSpots) {
+            if (!spot.getIsFull()) {
+                freeSpots.add((LargeSpot) spot);
+
+            }
+        }
+        return freeSpots;
+
+    }
+
 
     public ArrayList<LargeSpot> getLargeSpots() {
         return largeSpots;
