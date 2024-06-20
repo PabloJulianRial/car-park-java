@@ -10,13 +10,20 @@ public class Display {
 
     public static void printParkingLotStatus(ParkingLot lot) {
         System.out.println("\uD83C\uDD7F\uFE0F\uD83C\uDD7F\uFE0F\uD83C\uDD7F\uFE0F\uD83C\uDD7F\uFE0F\uD83C\uDD7F\uFE0F PARKING LOT \uD83C\uDD7F\uFE0F\uD83C\uDD7F\uFE0F\uD83C\uDD7F\uFE0F\uD83C\uDD7F\uFE0F\uD83C\uDD7F\uFE0F");
+        System.out.println();
+        if (lot.isEmpty()) {
+            System.out.println(Color.ANSI_PINK + "The parking lot is empty" + Color.ANSI_RESET);
+        }
+        System.out.println(Color.ANSI_YELLOW + "There are " + lot.getTotalSpots() + " spots in total in this parking lot: " + lot.getSingleSpots().size() + " single, " + lot.getRegularSpots().size() + " regular and " + lot.getLargeSpots().size() + " large" + Color.ANSI_RESET);
+
+        System.out.println(Color.ANSI_GREEN + "There are " + lot.freeSpots() + " spots free in this parking lot" + Color.ANSI_RESET);
         printSingleSpots(lot);
         printRegularSpots(lot);
         printLargeSpots(lot);
     }
 
     private static void printSingleSpots(ParkingLot lot) {
-        System.out.print("Single spots: " + lot.getFreeSingleSpots().size() + " ");
+        System.out.print("Single  spots free: " + lot.getFreeSingleSpots().size() + " ");
         for (Spot spot : lot.getSingleSpots()) {
             if (!spot.getParkedVehicles().isEmpty()) {
                 System.out.print("|" + spot.getParkedVehicles().get(0) + "|");
@@ -31,7 +38,7 @@ public class Display {
     }
 
     private static void printRegularSpots(ParkingLot lot) {
-        System.out.print("Regular spots: " + lot.getFreeRegularSpots().size() + " ");
+        System.out.print("Regular spots free: " + lot.getFreeRegularSpots().size() + " ");
         for (Spot spot : lot.getRegularSpots()) {
             List<Vehicle> parkedVehicles = spot.getParkedVehicles();
             if (parkedVehicles.isEmpty()) {
@@ -51,7 +58,7 @@ public class Display {
     }
 
     private static void printLargeSpots(ParkingLot lot) {
-        System.out.print("Large spots: " + lot.getFreeLargeSpots().size() + " ");
+        System.out.print("Large  spots  free: " + lot.getFreeLargeSpots().size() + " ");
         for (Spot spot : lot.getLargeSpots()) {
             List<Vehicle> parkedVehicles = spot.getParkedVehicles();
             if (parkedVehicles.isEmpty()) {

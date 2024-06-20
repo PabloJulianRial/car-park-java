@@ -102,6 +102,7 @@ public class ParkingLot {
         return spots;
     }
 
+
     public boolean isFull() {
         return freeSpots() == 0;
     }

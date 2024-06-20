@@ -10,10 +10,12 @@ public class Main {
     public static void main(String[] args) {
         String[] vehicleArray = {"bike", "car", "van"};
         Input inputHandler = new Input();
-
-        int largeSpots = inputHandler.getIntInput("Enter the number of large spots: ");
+        System.out.println();
+        System.out.println(Color.ANSI_BLUE + "Let's build a parking lot....." + Color.ANSI_RESET);
+        System.out.println();
         int singleSpots = inputHandler.getIntInput("Enter the number of single spots: ");
         int regularSpots = inputHandler.getIntInput("Enter the number of regular spots: ");
+        int largeSpots = inputHandler.getIntInput("Enter the number of large spots: ");
 
         ParkingLot lot = new ParkingLot(largeSpots, singleSpots, regularSpots);
 
@@ -37,9 +39,10 @@ public class Main {
         };
 
         while (!lot.isFull()) {
+
             Display.printParkingLotStatus(lot);
             Display.printVehicles(bikes, cars, vans);
-            System.out.println(lot);
+
 
             int vehicleToPark = inputHandler.getVehicleChoice();
             int spotToPark = inputHandler.getParkingChoice(vehicleArray, vehicleToPark);
