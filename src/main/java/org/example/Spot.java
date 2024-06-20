@@ -9,7 +9,7 @@ public abstract class Spot {
 
     public Spot() {
         this.isFull = false;
-        this.parkedVehicles = new ArrayList<>();  // Initialize parkedVehicles
+        this.parkedVehicles = new ArrayList<>();
     }
 
     public boolean getIsFull() {

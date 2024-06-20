@@ -11,15 +11,15 @@ public abstract class Vehicle {
 
     public abstract int getSize();
 
-    public boolean isParked() {
-        return this.isParked;
-    }
-
-    public void park() {
-        this.isParked = true;
-    }
-
-    public void unPark() {
-        this.isParked = false;
-    }
+//    public boolean isParked() {
+//        return this.isParked;
+//    }
+//
+//    public void park() {
+//        this.isParked = true;
+//    }
+//
+//    public void unPark() {
+//        this.isParked = false;
+//    }
 }

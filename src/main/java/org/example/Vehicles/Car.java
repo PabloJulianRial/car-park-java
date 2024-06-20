@@ -1,16 +1,18 @@
 package org.example.Vehicles;
 
-import org.example.CarModel;
+import org.example.Models.CarModel;
 import org.example.Vehicle;
 
 public class Car extends Vehicle {
-    private CarModel model;
-
+    private final CarModel model;
 
     public Car(CarModel model) {
         this.model = model;
     }
 
+    public CarModel getModel() {
+        return model;
+    }
 
     @Override
     public int getSize() {

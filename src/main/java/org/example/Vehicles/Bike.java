@@ -1,13 +1,17 @@
 package org.example.Vehicles;
 
-import org.example.BikeModel;
+import org.example.Models.BikeModel;
 import org.example.Vehicle;
 
 public class Bike extends Vehicle {
-    private BikeModel model;
+    private final BikeModel model;
 
     public Bike(BikeModel model) {
         this.model = model;
+    }
+
+    public BikeModel getModel() {
+        return model;
     }
 
     @Override
@@ -17,6 +21,6 @@ public class Bike extends Vehicle {
 
     @Override
     public String toString() {
-        return "\uD83C\uDFCD\uFE0F";
+        return "\uD83C\uDFCD️";
     }
 }

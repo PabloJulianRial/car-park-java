@@ -1,5 +1,8 @@
 package org.example;
 
+import org.example.Models.BikeModel;
+import org.example.Models.CarModel;
+import org.example.Models.VanModel;
 import org.example.Vehicles.Bike;
 import org.example.Vehicles.Car;
 import org.example.Vehicles.Van;

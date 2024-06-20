@@ -1,5 +1,8 @@
 package org.example;
 
+import org.example.CLI.Color;
+import org.example.CLI.Display;
+import org.example.CLI.Input;
 import org.example.Vehicles.Bike;
 import org.example.Vehicles.Car;
 import org.example.Vehicles.Van;
@@ -8,8 +11,11 @@ import java.util.List;
 
 public class Main {
     public static void main(String[] args) {
-        String[] vehicleArray = {"bike", "car", "van"};
+
         Input inputHandler = new Input();
+
+        String[] vehicleArray = {"bike", "car", "van"};
+
         System.out.println();
         System.out.println(Color.ANSI_BLUE + "Let's build a parking lot....." + Color.ANSI_RESET);
         System.out.println();
@@ -27,28 +33,22 @@ public class Main {
         List<Bike> bikes = VehicleGenerator.createBikes(numberOfBikes);
         List<Van> vans = VehicleGenerator.createVans(numberOfVans);
 
-        List<? extends Spot>[] spotLists = (List<? extends Spot>[]) new List<?>[]{
-                lot.getSingleSpots(),
-                lot.getRegularSpots(),
-                lot.getLargeSpots()
-        };
-        List<? extends Vehicle>[] vehicleLists = (List<? extends Vehicle>[]) new List<?>[]{
-                bikes,
-                cars,
-                vans
-        };
+        List<Spot> singleSpotsList = lot.getSingleSpots();
+        List<Spot> regularSpotsList = lot.getRegularSpots();
+        List<Spot> largeSpotsList = lot.getLargeSpots();
+
+        List<Spot>[] spotLists = new List[]{singleSpotsList, regularSpotsList, largeSpotsList};
+        List<Vehicle>[] vehicleLists = new List[]{bikes, cars, vans};
 
         while (!lot.isFull()) {
-
             Display.printParkingLotStatus(lot);
             Display.printVehicles(bikes, cars, vans);
-
 
             int vehicleToPark = inputHandler.getVehicleChoice();
             int spotToPark = inputHandler.getParkingChoice(vehicleArray, vehicleToPark);
 
-            List<? extends Spot> spots = spotLists[spotToPark - 1];
-            List<? extends Vehicle> vehicles = vehicleLists[vehicleToPark - 1];
+            List<Spot> spots = spotLists[spotToPark - 1];
+            List<Vehicle> vehicles = vehicleLists[vehicleToPark - 1];
 
             for (Spot spot : spots) {
                 if (!spot.getIsFull() && spot.canParkVehicle(vehicles.get(0)) && vehicles.get(0).getSize() <= spot.getSize()) {
@@ -58,7 +58,7 @@ public class Main {
                 }
             }
             if (lot.isFull()) {
-                System.out.println("\uD83D\uDEAB\uD83D\uDEAB\uD83D\uDEAB\uD83D\uDEAB\uD83D\uDEAB Parking lot is full, find another parking lot!!!\uD83D\uDEAB\uD83D\uDEAB\uD83D\uDEAB\uD83D\uDEAB\uD83D\uDEAB");
+                System.out.println(Color.ANSI_PURPLE + "\uD83D\uDEAB\uD83D\uDEAB\uD83D\uDEAB\uD83D\uDEAB\uD83D\uDEAB Parking lot is full, find another parking lot!!!\uD83D\uDEAB\uD83D\uDEAB\uD83D\uDEAB\uD83D\uDEAB\uD83D\uDEAB" + Color.ANSI_RESET);
             }
         }
     }

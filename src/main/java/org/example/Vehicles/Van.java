@@ -1,14 +1,17 @@
 package org.example.Vehicles;
 
-import org.example.VanModel;
+import org.example.Models.VanModel;
 import org.example.Vehicle;
 
 public class Van extends Vehicle {
-    private VanModel model;
-
+    private final VanModel model;
 
     public Van(VanModel model) {
         this.model = model;
+    }
+
+    public VanModel getModel() {
+        return model;
     }
 
     @Override

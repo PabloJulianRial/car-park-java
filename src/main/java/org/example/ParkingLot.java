@@ -7,9 +7,9 @@ import org.example.Spots.SingleSpot;
 import java.util.ArrayList;
 
 public class ParkingLot {
-    private final ArrayList<SingleSpot> singleSpots;
-    private final ArrayList<RegularSpot> regularSpots;
-    private final ArrayList<LargeSpot> largeSpots;
+    private final ArrayList<Spot> singleSpots;
+    private final ArrayList<Spot> regularSpots;
+    private final ArrayList<Spot> largeSpots;
 
     public ParkingLot(int large, int single, int regular) {
         singleSpots = new ArrayList<>();
@@ -26,9 +26,9 @@ public class ParkingLot {
         }
     }
 
-    public ArrayList<SingleSpot> getFreeSingleSpots() {
-        ArrayList<SingleSpot> freeSpots = new ArrayList<>();
-        for (SingleSpot spot : this.singleSpots) {
+    public ArrayList<Spot> getFreeSingleSpots() {
+        ArrayList<Spot> freeSpots = new ArrayList<>();
+        for (Spot spot : this.singleSpots) {
             if (!spot.getIsFull()) {
                 freeSpots.add(spot);
             }
@@ -36,51 +36,46 @@ public class ParkingLot {
         return freeSpots;
     }
 
-    public ArrayList<SingleSpot> getSingleSpots() {
+    public ArrayList<Spot> getSingleSpots() {
         return singleSpots;
     }
 
-
-    public ArrayList<RegularSpot> getFreeRegularSpots() {
-        ArrayList<RegularSpot> freeSpots = new ArrayList<>();
-        for (RegularSpot spot : this.regularSpots) {
+    public ArrayList<Spot> getFreeRegularSpots() {
+        ArrayList<Spot> freeSpots = new ArrayList<>();
+        for (Spot spot : this.regularSpots) {
             if (!spot.getIsFull()) {
                 freeSpots.add(spot);
             }
         }
         return freeSpots;
-
     }
 
-
-    public ArrayList<RegularSpot> getRegularSpots() {
+    public ArrayList<Spot> getRegularSpots() {
         return regularSpots;
     }
 
-    public ArrayList<LargeSpot> getFreeLargeSpots() {
-        ArrayList<LargeSpot> freeSpots = new ArrayList<>();
-        for (LargeSpot spot : this.largeSpots) {
+    public ArrayList<Spot> getFreeLargeSpots() {
+        ArrayList<Spot> freeSpots = new ArrayList<>();
+        for (Spot spot : this.largeSpots) {
             if (!spot.getIsFull()) {
                 freeSpots.add(spot);
-
             }
         }
         return freeSpots;
-
     }
 
-
-    public ArrayList<LargeSpot> getLargeSpots() {
+    public ArrayList<Spot> getLargeSpots() {
         return largeSpots;
+    }
+
+    public int getTotalSpots() {
+        return singleSpots.size() + regularSpots.size() + largeSpots.size();
     }
 
     public int freeSpots() {
         return freeSpots(singleSpots.size(), regularSpots.size(), largeSpots.size());
     }
 
-    public int getTotalSpots() {
-        return singleSpots.size() + regularSpots.size() + largeSpots.size();
-    }
 
     private int freeSpots(int single, int regular, int large) {
         int spots = 0;
@@ -102,25 +97,12 @@ public class ParkingLot {
         return spots;
     }
 
-
     public boolean isFull() {
         return freeSpots() == 0;
     }
 
     public boolean isEmpty() {
         return freeSpots() == getTotalSpots();
-    }
-
-    public boolean areSingleSpotsFull() {
-        return freeSpots(singleSpots.size(), 0, 0) == 0;
-    }
-
-    public boolean areRegularSpotsFull() {
-        return freeSpots(0, regularSpots.size(), 0) == 0;
-    }
-
-    public boolean areLargeSpotsFull() {
-        return freeSpots(0, 0, largeSpots.size()) == 0;
     }
 
     @Override
