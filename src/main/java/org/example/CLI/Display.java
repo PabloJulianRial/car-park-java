@@ -70,7 +70,7 @@ public class Display {
             } else if (parkedVehicles.size() == 1) {
                 System.out.print("|" + parkedVehicles.get(0) + "__|");
             } else if (parkedVehicles.size() == 2) {
-                System.out.print("|" + parkedVehicles.get(0) + "|" + parkedVehicles.get(1) + "_|");
+                System.out.print("|" + parkedVehicles.get(0) + parkedVehicles.get(1) + "|");
             } else {
                 System.out.print("|" + parkedVehicles.get(0) + "|" + parkedVehicles.get(1) + "|" + parkedVehicles.get(2) + "|");
             }
@@ -85,21 +85,21 @@ public class Display {
         for (Bike bike : bikes) {
             System.out.print(Color.ANSI_RED + "|" + Color.ANSI_RESET);
             System.out.print(bike.getModel());
-            System.out.print("\uD83C\uDFCD️");
+            System.out.print(bike);
             System.out.print(Color.ANSI_RED + "|" + Color.ANSI_RESET);
         }
         System.out.println();
         for (Car car : cars) {
             System.out.print(Color.ANSI_BLUE + "|" + Color.ANSI_RESET);
             System.out.print(car.getModel());
-            System.out.print("\uD83C\uDFCD️");
+            System.out.print(car);
             System.out.print(Color.ANSI_BLUE + "|" + Color.ANSI_RESET);
         }
         System.out.println();
         for (Van van : vans) {
             System.out.print(Color.ANSI_GREEN + "|" + Color.ANSI_RESET);
             System.out.print(van.getModel());
-            System.out.print("\uD83C\uDFCD️");
+            System.out.print(van);
             System.out.print(Color.ANSI_GREEN + "|" + Color.ANSI_RESET);
         }
         System.out.println();
